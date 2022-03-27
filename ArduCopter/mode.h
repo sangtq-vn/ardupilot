@@ -340,13 +340,16 @@ public:
     bool allows_autotune() const override { return true; }
     bool allows_flip() const override { return true; }
 
+    AP_Mission mission{
+    FUNCTOR_BIND_MEMBER(&ModeAltHold::start_command, bool, const AP_Mission::Mission_Command &)};
+
 protected:
 
     const char *name() const override { return "ALT_HOLD"; }
     const char *name4() const override { return "ALTH"; }
 
 private:
-
+    bool start_command(const AP_Mission::Mission_Command& cmd);
 };
 
 
@@ -413,8 +416,7 @@ public:
     AP_Mission mission{
         FUNCTOR_BIND_MEMBER(&ModeAuto::start_command, bool, const AP_Mission::Mission_Command &),
         FUNCTOR_BIND_MEMBER(&ModeAuto::verify_command, bool, const AP_Mission::Mission_Command &),
-        FUNCTOR_BIND_MEMBER(&ModeAuto::exit_mission, void),
-        FUNCTOR_BIND_MEMBER(&ModeAltHold::start_command, bool, const AP_Mission::Mission_Command &)};
+        FUNCTOR_BIND_MEMBER(&ModeAuto::exit_mission, void)};
 
 protected:
 
