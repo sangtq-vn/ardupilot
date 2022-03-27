@@ -855,6 +855,7 @@ MAV_MISSION_RESULT AP_Mission::mavlink_int_to_mission_cmd(const mavlink_mission_
     cmd.id = packet.command;
     cmd.content.location = {};
 
+    gcs().send_text(MAV_SEVERITY_INFO, "Test receive message. AT AP");
     MAV_MISSION_RESULT param_check = sanity_check_params(packet);
     if (param_check != MAV_MISSION_ACCEPTED) {
         return param_check;

@@ -40,7 +40,7 @@ void Copter::userhook_SlowLoop()
 void Copter::userhook_SuperSlowLoop()
 {
     // put your 1Hz code here
-    gcs().send_text(MAV_SEVERITY_INFO, "Test debug message.");
+    //gcs().send_text(MAV_SEVERITY_INFO, "Test debug message.");
 }
 #endif
 
