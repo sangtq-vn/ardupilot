@@ -341,7 +341,7 @@ public:
     bool allows_flip() const override { return true; }
 
     AP_Mission mission{
-    FUNCTOR_BIND_MEMBER(&ModeAltHold::start_command, bool, const AP_Mission::Mission_Command &)};
+        FUNCTOR_BIND_MEMBER(&ModeAuto::start_command, bool, const AP_Mission::Mission_Command &)};
 
 protected:
 
