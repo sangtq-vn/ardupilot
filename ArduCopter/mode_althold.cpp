@@ -125,7 +125,7 @@ bool ModeAltHold::start_command(const AP_Mission::Mission_Command& cmd)
 
 // verify_command - callback function called from ap-mission at 10hz or higher when a command is being run
 //      we double check that the flight mode is AUTO to avoid the possibility of ap-mission triggering actions while we're not in AUTO mode
-bool ModeAuto::verify_command(const AP_Mission::Mission_Command& cmd)
+bool ModeAltHold::verify_command(const AP_Mission::Mission_Command& cmd)
 {
     bool cmd_complete = false;
 
@@ -155,7 +155,7 @@ bool ModeAuto::verify_command(const AP_Mission::Mission_Command& cmd)
 }
 
 // exit_mission - function that is called once the mission completes
-void ModeAuto::exit_mission()
+void ModeAltHold::exit_mission()
 {
     // play a tone
 }
