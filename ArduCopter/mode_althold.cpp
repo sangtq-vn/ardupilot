@@ -122,3 +122,40 @@ bool ModeAltHold::start_command(const AP_Mission::Mission_Command& cmd)
     // always return success
     return true;
 }
+
+// verify_command - callback function called from ap-mission at 10hz or higher when a command is being run
+//      we double check that the flight mode is AUTO to avoid the possibility of ap-mission triggering actions while we're not in AUTO mode
+bool ModeAuto::verify_command(const AP_Mission::Mission_Command& cmd)
+{
+    bool cmd_complete = false;
+
+    switch (cmd.id) {
+    //
+    // navigation commands
+    //
+    case MAV_CMD_WAYPOINT_USER_1:
+        cmd_complete = true;
+        break;
+
+    default:
+        // error message
+        gcs().send_text(MAV_SEVERITY_WARNING,"Skipping invalid cmd #%i",cmd.id);
+        // return true if we do not recognize the command so that we move on to the next command
+        cmd_complete = true;
+        break;
+    }
+
+
+    // send message to GCS
+    if (cmd_complete) {
+        gcs().send_mission_item_reached_message(cmd.index);
+    }
+
+    return cmd_complete;
+}
+
+// exit_mission - function that is called once the mission completes
+void ModeAuto::exit_mission()
+{
+    // play a tone
+}
