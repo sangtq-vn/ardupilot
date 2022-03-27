@@ -101,3 +101,24 @@ void ModeAltHold::run()
     // run the vertical position controller and set output throttle
     pos_control->update_z_controller();
 }
+
+// start_command - this function will be called when the ap_mission lib wishes to start a new command
+bool ModeAltHold::start_command(const AP_Mission::Mission_Command& cmd)
+{
+    switch(cmd.id) {
+
+    ///
+    /// navigation commands
+    ///
+    case MAV_CMD_WAYPOINT_USER_1:                   // 22
+        gcs().send_text(MAV_SEVERITY_INFO, "Test receive message.");
+        break;
+
+    default:
+        // unable to use the command, allow the vehicle to try the next command
+        return false;
+    }
+
+    // always return success
+    return true;
+}

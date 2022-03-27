@@ -413,7 +413,8 @@ public:
     AP_Mission mission{
         FUNCTOR_BIND_MEMBER(&ModeAuto::start_command, bool, const AP_Mission::Mission_Command &),
         FUNCTOR_BIND_MEMBER(&ModeAuto::verify_command, bool, const AP_Mission::Mission_Command &),
-        FUNCTOR_BIND_MEMBER(&ModeAuto::exit_mission, void)};
+        FUNCTOR_BIND_MEMBER(&ModeAuto::exit_mission, void),
+        FUNCTOR_BIND_MEMBER(&ModeAltHold::start_command, bool, const AP_Mission::Mission_Command &)};
 
 protected:
 
