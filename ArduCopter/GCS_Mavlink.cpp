@@ -729,6 +729,7 @@ MAV_RESULT GCS_MAVLINK_Copter::handle_command_mount(const mavlink_command_long_t
 
 MAV_RESULT GCS_MAVLINK_Copter::handle_command_long_packet(const mavlink_command_long_t &packet)
 {
+    gcs().send_text(MAV_SEVERITY_INFO, "Test debug message 3.");
     switch(packet.command) {
 
     case MAV_CMD_NAV_TAKEOFF: {
